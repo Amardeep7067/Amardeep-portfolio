@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amardeep Bairagi — Backend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#534AB7;--purple-light:#7F77DD;--purple-pale:#EEEDFE;--purple-mid:#AFA9EC;
+  --teal:#0F6E56;--teal-light:#1D9E75;--teal-pale:#E1F5EE;--teal-mid:#9FE1CB;
+  --coral:#993C1D;--coral-light:#D85A30;--coral-pale:#FAECE7;
+  --amber:#854F0B;--amber-light:#EF9F27;--amber-pale:#FAEEDA;
+  --blue:#185FA5;--blue-pale:#E6F1FB;
+  --text:#1a1a2e;--text-2:#555577;--text-3:#8888aa;
+  --bg:#f8f7ff;--bg-card:#ffffff;--border:rgba(83,74,183,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(248,247,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 48px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--purple);letter-spacing:-0.5px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;color:var(--text-2);text-decoration:none;transition:color 0.2s;letter-spacing:0.2px}
+.nav-links a:hover{color:var(--purple)}
+
+/* HERO */
+.hero{min-height:92vh;padding:80px 48px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:var(--bg-card);z-index:0}
+.hero-orb1{position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:var(--purple-pale);opacity:0.7;z-index:0}
+.hero-orb2{position:absolute;bottom:-100px;left:30%;width:320px;height:320px;border-radius:50%;background:var(--teal-pale);opacity:0.5;z-index:0}
+.hero-orb3{position:absolute;top:40%;right:20%;width:180px;height:180px;border-radius:50%;background:var(--amber-pale);opacity:0.4;z-index:0}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--teal);background:var(--teal-pale);border:1px solid var(--teal-mid);padding:6px 16px;border-radius:20px;margin-bottom:28px;font-weight:500;letter-spacing:0.3px}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--teal-light);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.05;margin-bottom:12px;letter-spacing:-1.5px}
+.hero-name .accent{color:var(--purple)}
+.hero-role-line{font-size:17px;color:var(--purple);font-weight:500;margin-bottom:10px;font-family:'Syne',sans-serif}
+.hero-typed{font-size:15px;color:var(--text-2);margin-bottom:32px;min-height:22px}
+.cursor{display:inline-block;width:2px;height:15px;background:var(--purple);vertical-align:middle;margin-left:2px;animation:blink 0.8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{font-size:15px;color:var(--text-2);line-height:1.75;max-width:540px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{padding:13px 28px;background:var(--purple);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:var(--purple-light);transform:translateY(-2px)}
+.btn-secondary{padding:13px 28px;background:transparent;color:var(--purple);border:1.5px solid var(--purple-mid);border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;font-family:'Inter',sans-serif}
+.btn-secondary:hover{background:var(--purple-pale);transform:translateY(-2px)}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;background:var(--bg);color:var(--text-2);border:1px solid var(--border);padding:5px 12px;border-radius:6px;font-weight:400}
+
+/* STATS */
+.stats{padding:0 48px 64px;background:var(--bg-card);border-bottom:1px solid var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:860px}
+.stat-card{border-radius:14px;padding:20px 24px;text-align:center}
+.stat-card:nth-child(1){background:var(--purple-pale)}
+.stat-card:nth-child(2){background:var(--teal-pale)}
+.stat-card:nth-child(3){background:var(--coral-pale)}
+.stat-card:nth-child(4){background:var(--amber-pale)}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;display:block}
+.stat-card:nth-child(1) .stat-num{color:var(--purple)}
+.stat-card:nth-child(2) .stat-num{color:var(--teal)}
+.stat-card:nth-child(3) .stat-num{color:var(--coral)}
+.stat-card:nth-child(4) .stat-num{color:var(--amber)}
+.stat-lbl{font-size:12px;margin-top:4px;display:block;opacity:0.75;font-weight:500}
+
+/* SECTION BASE */
+.section{padding:72px 48px}
+.section-alt{background:var(--bg-card)}
+.section-label{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.lp{color:var(--purple)}.lt{color:var(--teal)}.lc{color:var(--coral)}.la{color:var(--amber)}.lb{color:var(--blue)}
+.section-heading{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;margin-bottom:36px;letter-spacing:-0.5px}
+
+/* SKILLS */
+.skills-group{margin-bottom:32px}
+.skills-group-label{font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.skill-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s}
+.skill-card:hover{transform:translateY(-4px);border-color:var(--purple-mid);box-shadow:0 8px 24px rgba(83,74,183,0.1)}
+.sk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sk-name{font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px}
+.sk-icon{font-size:16px}
+.sk-level{font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px}
+.l-expert{background:var(--purple-pale);color:var(--purple)}
+.l-inter{background:var(--teal-pale);color:var(--teal)}
+.bar-bg{height:5px;background:#f0f0f8;border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.bp{background:var(--purple-light)}.bt{background:var(--teal-light)}.bb{background:#378ADD}.bc{background:var(--coral-light)}.ba{background:var(--amber-light)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.proj-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;cursor:pointer;transition:transform 0.35s,box-shadow 0.35s,border-color 0.25s;transform-style:preserve-3d;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:16px 16px 0 0}
+.proj-card:nth-child(1)::before{background:var(--purple-light)}
+.proj-card:nth-child(2)::before{background:var(--teal-light)}
+.proj-card:hover{transform:perspective(800px) rotateY(4deg) rotateX(-2deg) translateY(-8px);box-shadow:0 20px 48px rgba(83,74,183,0.15);border-color:var(--purple-mid)}
+.proj-badge{font-size:11px;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:14px;font-weight:500}
+.pb1{background:var(--purple-pale);color:var(--purple)}
+.pb2{background:var(--teal-pale);color:var(--teal)}
+.proj-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;margin-bottom:10px}
+.proj-desc{font-size:13px;color:var(--text-2);line-height:1.7}
+.proj-stack{margin-top:16px;display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:11px;background:var(--bg);color:var(--text-2);border:1px solid var(--border);padding:3px 10px;border-radius:5px}
+
+/* EXPERIENCE */
+.tl{position:relative;padding-left:32px}
+.tl::before{content:'';position:absolute;left:10px;top:10px;bottom:0;width:2px;background:var(--purple-pale)}
+.tl-item{position:relative;margin-bottom:36px}
+.tl-dot{position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;border:2.5px solid var(--purple-light);background:var(--bg-card);transition:background 0.2s}
+.tl-item:first-child .tl-dot{background:var(--purple-light)}
+.tl-date{font-size:11px;color:var(--purple);font-weight:600;letter-spacing:0.3px;margin-bottom:4px}
+.tl-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;margin-bottom:3px}
+.tl-sub{font-size:13px;color:var(--text-2);margin-bottom:10px}
+.tl-company-badge{display:inline-block;font-size:11px;background:var(--teal-pale);color:var(--teal);padding:3px 10px;border-radius:5px;font-weight:500;margin-bottom:12px}
+.tl-bullets{list-style:none}
+.tl-bullets li{font-size:13px;color:var(--text-2);line-height:1.7;padding-left:16px;position:relative;margin-bottom:4px}
+.tl-bullets li::before{content:'▸';position:absolute;left:0;color:var(--purple-light);font-size:11px;top:3px}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px}
+.edu-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s}
+.edu-card:hover{transform:translateY(-4px);border-color:var(--purple-mid);box-shadow:0 8px 24px rgba(83,74,183,0.1)}
+.edu-icon{width:40px;height:40px;border-radius:10px;background:var(--purple-pale);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px;color:var(--purple)}
+.edu-deg{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;margin-bottom:5px}
+.edu-inst{font-size:13px;color:var(--purple);margin-bottom:4px;font-weight:500}
+.edu-meta{font-size:12px;color:var(--text-3)}
+.edu-grade{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:6px}
+.g1{background:var(--purple-pale);color:var(--purple)}
+.g2{background:var(--teal-pale);color:var(--teal)}
+
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.ach-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:transform 0.2s,border-color 0.2s}
+.ach-card:hover{transform:translateY(-3px);border-color:var(--purple-mid)}
+.ach-ic{font-size:20px;flex-shrink:0;margin-top:2px}
+.ach-txt{font-size:13px;color:var(--text-2);line-height:1.55}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.c-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s}
+.c-card:hover{transform:translateY(-3px);border-color:var(--purple-mid);box-shadow:0 6px 20px rgba(83,74,183,0.1)}
+.c-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci1{background:var(--purple-pale);color:var(--purple)}
+.ci2{background:var(--blue-pale);color:var(--blue)}
+.ci3{background:#f0f0f0;color:#333}
+.ci4{background:var(--teal-pale);color:var(--teal)}
+.ci5{background:var(--amber-pale);color:var(--amber)}
+.c-lbl{font-size:11px;color:var(--text-3);margin-bottom:2px}
+.c-val{font-size:13px;font-weight:500;word-break:break-all}
+
+/* FOOTER */
+footer{background:var(--purple);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+footer p{font-size:13px;color:rgba(255,255,255,0.7)}
+footer span{font-size:13px;color:rgba(255,255,255,0.5)}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.92);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.d1{transition-delay:0.05s}.d2{transition-delay:0.12s}.d3{transition-delay:0.19s}.d4{transition-delay:0.26s}.d5{transition-delay:0.33s}.d6{transition-delay:0.4s}
+
+/* SVG ICONS inline */
+.svg-ico{width:18px;height:18px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .hero{padding:60px 20px}
+  .stats{padding:0 20px 48px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .section{padding:52px 20px}
+  footer{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">&lt;Amardeep /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero section-alt">
+  <div class="hero-bg"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-orb3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Open to opportunities</div>
+    <h1 class="hero-name">Hi, I'm <span class="accent">Amardeep Bairagi</span></h1>
+    <div class="hero-role-line">Backend Developer · Tata Consultancy Services</div>
+    <p class="hero-typed"><span id="typed"></span><span class="cursor"></span></p>
+    <p class="hero-desc">Software Developer with experience building backend applications using Java and Spring Boot. Strong in Data Structures &amp; Algorithms, REST API development, and OOP — focused on clean, maintainable, and efficient code.</p>
+    <div class="hero-btns">
+      <a href="mailto:vaishnavamar07@gmail.com" class="btn-primary">
+        <svg class="svg-ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Hire me
+      </a>
+      <a href="https://www.linkedin.com/in/amardeep-bairagi/" target="_blank" class="btn-secondary">
+        <svg class="svg-ico" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Amardeep7067" target="_blank" class="btn-secondary">
+        <svg class="svg-ico" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-tags">
+      <span class="tag">Java</span>
+      <span class="tag">Spring Boot</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">AWS</span>
+      <span class="tag">DSA</span>
+      <span class="tag">System Design</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats section-alt">
+  <div class="stats-grid">
+    <div class="stat-card reveal d1"><span class="stat-num">1+</span><span class="stat-lbl">Year at TCS</span></div>
+    <div class="stat-card reveal d2"><span class="stat-num">5+</span><span class="stat-lbl">Technologies</span></div>
+    <div class="stat-card reveal d3"><span class="stat-num">8.49</span><span class="stat-lbl">CGPA — M.Tech</span></div>
+    <div class="stat-card reveal d4"><span class="stat-num">85%</span><span class="stat-lbl">ML model accuracy</span></div>
+  </div>
+</div>
+
+<section id="skills" class="section">
+  <span class="section-label lp reveal">Skills</span>
+  <h2 class="section-heading reveal">What I work with</h2>
+
+  <div class="skills-group">
+    <div class="skills-group-label reveal">Languages</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal d1"><div class="sk-head"><span class="sk-name">☕ Java</span><span class="sk-level l-expert">Expert</span></div><div class="bar-bg"><div class="bar-fill bp" data-w="90" style="width:0"></div></div></div>
+      <div class="skill-card reveal d2"><div class="sk-head"><span class="sk-name">🐍 Python</span><span class="sk-level l-inter">Intermediate</span></div><div class="bar-bg"><div class="bar-fill bt" data-w="72" style="width:0"></div></div></div>
+      <div class="skill-card reveal d3"><div class="sk-head"><span class="sk-name">🗄️ SQL</span><span class="sk-level l-inter">Intermediate</span></div><div class="bar-bg"><div class="bar-fill bb" data-w="70" style="width:0"></div></div></div>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <div class="skills-group-label reveal">Backend &amp; APIs</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal d1"><div class="sk-head"><span class="sk-name">🌱 Spring Boot</span><span class="sk-level l-expert">Expert</span></div><div class="bar-bg"><div class="bar-fill bt" data-w="88" style="width:0"></div></div></div>
+      <div class="skill-card reveal d2"><div class="sk-head"><span class="sk-name">🔗 REST APIs</span><span class="sk-level l-expert">Expert</span></div><div class="bar-bg"><div class="bar-fill bp" data-w="88" style="width:0"></div></div></div>
+      <div class="skill-card reveal d3"><div class="sk-head"><span class="sk-name">⚡ FastAPI</span><span class="sk-level l-inter">Intermediate</span></div><div class="bar-bg"><div class="bar-fill bc" data-w="65" style="width:0"></div></div></div>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <div class="skills-group-label reveal">Cloud &amp; Tools</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal d1"><div class="sk-head"><span class="sk-name">☁️ AWS (EC2, S3, Lambda, DynamoDB)</span><span class="sk-level l-inter">Intermediate</span></div><div class="bar-bg"><div class="bar-fill ba" data-w="65" style="width:0"></div></div></div>
+      <div class="skill-card reveal d2"><div class="sk-head"><span class="sk-name">🔧 Git &amp; GitHub</span><span class="sk-level l-expert">Expert</span></div><div class="bar-bg"><div class="bar-fill bc" data-w="85" style="width:0"></div></div></div>
+      <div class="skill-card reveal d3"><div class="sk-head"><span class="sk-name">🏗️ System Design</span><span class="sk-level l-inter">Intermediate</span></div><div class="bar-bg"><div class="bar-fill bb" data-w="60" style="width:0"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section section-alt">
+  <span class="section-label lt reveal">Projects</span>
+  <h2 class="section-heading reveal">Featured work</h2>
+  <div class="projects-grid">
+    <div class="proj-card reveal-scale d1">
+      <span class="proj-badge pb1">ML / Web App</span>
+      <h3 class="proj-title">Skin Disease Detection Web App</h3>
+      <p class="proj-desc">Image-based disease detection app using a CNN model to classify skin conditions with ~85% accuracy. Built backend APIs for image upload, processing, and prediction results. Designed a complete ML pipeline for data preprocessing and model inference.</p>
+      <div class="proj-stack">
+        <span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">CNN</span><span class="pill">ML Pipeline</span><span class="pill">Image Processing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <span class="section-label lc reveal">Experience</span>
+  <h2 class="section-heading reveal">Work history</h2>
+  <div class="tl">
+    <div class="tl-item reveal-left d1">
+      <div class="tl-dot"></div>
+      <div class="tl-date">Jul 2024 – Present</div>
+      <div class="tl-title">Software Developer</div>
+      <span class="tl-company-badge">Tata Consultancy Services · Full-time</span>
+      <ul class="tl-bullets">
+        <li>Developed backend features using Java and Spring Boot for enterprise applications</li>
+        <li>Designed and implemented RESTful APIs for handling client requests and data processing</li>
+        <li>Performed CRUD operations and optimized database queries for improved performance</li>
+        <li>Debugged and resolved issues to improve application stability</li>
+        <li>Participated in code reviews, testing, and production deployment support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="section section-alt">
+  <span class="section-label lb reveal">Education</span>
+  <h2 class="section-heading reveal">Academic background</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal d1">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-deg">Integrated M.Tech — AI &amp; ML</div>
+      <div class="edu-inst">VIT Bhopal University</div>
+      <div class="edu-meta">Graduated May 2024</div>
+      <span class="edu-grade g1">8.49 / 10 CGPA</span>
+    </div>
+    <div class="edu-card reveal d2">
+      <div class="edu-icon">📚</div>
+      <div class="edu-deg">Class XII</div>
+      <div class="edu-inst">Govt. Excellence No.1, Guna</div>
+      <div class="edu-meta">May 2019</div>
+      <span class="edu-grade g2">91.2%</span>
+    </div>
+  </div>
+
+  <span class="section-label la reveal" style="margin-top:8px;margin-bottom:14px;display:block">Achievements</span>
+  <div class="ach-grid">
+    <div class="ach-card reveal d1"><span class="ach-ic">🏅</span><span class="ach-txt">STAR Scholarship recipient at VIT Bhopal University</span></div>
+    <div class="ach-card reveal d2"><span class="ach-ic">🏆</span><span class="ach-txt">2nd Rank in District — Higher Secondary Examination, 2019</span></div>
+    <div class="ach-card reveal d3"><span class="ach-ic">❤️</span><span class="ach-txt">NSS Volunteer — HIV/AIDS awareness campaign, World AIDS Day, Dec 2019</span></div>
+    <div class="ach-card reveal d4"><span class="ach-ic">📸</span><span class="ach-txt">Hobbies: Photography &amp; Videography · Languages: English, Hindi</span></div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <span class="section-label lp reveal">Contact</span>
+  <h2 class="section-heading reveal">Let's connect</h2>
+  <div class="contact-grid">
+    <a href="mailto:vaishnavamar07@gmail.com" class="c-card reveal d1">
+      <div class="c-ico ci1"><svg class="svg-ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+      <div><div class="c-lbl">Email</div><div class="c-val">vaishnavamar07@gmail.com</div></div>
+    </a>
+    <a href="tel:+917067749453" class="c-card reveal d2">
+      <div class="c-ico ci5"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div><div class="c-lbl">Phone</div><div class="c-val">+91 70677 49453</div></div>
+    </a>
+    <a href="https://www.linkedin.com/in/amardeep-bairagi/" target="_blank" class="c-card reveal d3">
+      <div class="c-ico ci2"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div><div class="c-lbl">LinkedIn</div><div class="c-val">amardeep-bairagi</div></div>
+    </a>
+    <a href="https://github.com/Amardeep7067" target="_blank" class="c-card reveal d4">
+      <div class="c-ico ci3"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+      <div><div class="c-lbl">GitHub</div><div class="c-val">Amardeep7067</div></div>
+    </a>
+    <div class="c-card reveal d5">
+      <div class="c-ico ci4"><svg class="svg-ico" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div><div class="c-lbl">Location</div><div class="c-val">India</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Amardeep Bairagi · Backend Developer · Open to opportunities</p>
+  <span>Built with passion · 2025</span>
+</footer>
+
+<script>
+const roles=["Backend Developer","Java & Spring Boot","REST API Engineer","AWS Cloud Practitioner","DSA & System Design"];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('typed');
+function type(){
+  const r=roles[ri];
+  if(!del){el.textContent=r.slice(0,ci+1);ci++;if(ci===r.length){del=true;setTimeout(type,1900);return;}}
+  else{el.textContent=r.slice(0,ci-1);ci--;if(ci===0){del=false;ri=(ri+1)%roles.length;}}
+  setTimeout(type,del?50:100);
+}
+type();
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.bar-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el=>{io.observe(el)});
+</script>
+</body>
+</html>
